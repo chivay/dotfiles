@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+NET_LINE=$(nmcli dev wifi | grep \* | tac | head -n 1 | tr " " "\n" | grep -v "^$" )
+readarray -t NET_ARGS <<<"$NET_LINE"
+
+NET_SSID=${NET_ARGS[1]}
+NET_TYPE=${NET_ARGS[2]}
+NET_CHANNEL=${NET_ARGS[3]}
+NET_MBITS=${NET_ARGS[4]}
+NET_QUALITY=${NET_ARGS[6]}
+NET_SIGNAL=${NET_ARGS[7]}
+NET_SECURITY=${NET_ARGS[8]}
+
+
+echo "$NET_SSID"

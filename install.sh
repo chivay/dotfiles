@@ -35,4 +35,27 @@ else
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+if [ ! -d "${HOME}/.config" ]; then
+    mkdir -p $HOME/.config
+fi
 
+MANAGED_DIRECTORIES="i3 i3blocks nvim"
+CONFIG_PATH=$HOME/.config
+
+echo
+echo "Installing .config links"
+echo "========================================"
+for dir in $MANAGED_DIRECTORIES; do
+    if [ -e $CONFIG_PATH/$dir  ]; then
+        echo "${CONFIG_PATH}/${dir} already exists. Ignoring..."
+        continue
+    fi
+
+    ln -s $DOTDIR/$dir $CONFIG_PATH/$dir
+
+done
+
+# Create .vimrc symlink for easier editing
+if [ ! -e $HOME/.vimrc ]; then
+    ln -s $DOTDIR/nvim/init.vim $HOME/.vimrc
+fi

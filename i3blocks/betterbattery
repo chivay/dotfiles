@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+
+
+chargeIcon = ''
+pluggedIcon = ''
+batteryIcons = ['',
+                '',
+                '',
+                '',
+                '']
+
+import re
+from subprocess import check_output
+
+def getIcon(batteryPercent):
+
+    if batteryPercent < 10:
+        return batteryIcons[0]
+    if batteryPercent < 30:
+        return batteryIcons[1]
+    if batteryPercent < 60:
+        return batteryIcons[2]
+    if batteryPercent < 90:
+        return batteryIcons[3]
+
+    return batteryIcons[4]
+
+
+
+def main():
+    acpi = check_output(["acpi"]).decode('utf-8')
+
+    isCharging = ("Charging" in acpi)
+    isPlugged = ("Full" in acpi)
+
+
+    chargedPercent = re.search('\d+%', acpi).group(0)
+    chargedPercent = int(chargedPercent[:len(chargedPercent)-1])
+
+
+    if isPlugged:
+        return
+
+    #timeRemaining = re.search('\d+:\d+', acpi).group(0)
+    
+    timeRemaining = ""
+
+    printIcon = getIcon(chargedPercent)
+
+    if isCharging:
+        printIcon = chargeIcon
+
+    print('{icon} {bat}%'.format(
+        icon=printIcon,
+        bat=chargedPercent,
+        left=timeRemaining
+        ))
+
+
+if __name__ == '__main__':
+    main()
