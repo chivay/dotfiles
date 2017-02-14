@@ -16,6 +16,7 @@ for file in $files; do
     fi
 done
 
+echo
 echo "Installing zgen..."
 echo "========================================"
 if [ ! -d $HOME/.zgen ]; then
@@ -24,6 +25,7 @@ else
     echo "${HOME}/.zgen exists. Ignoring."
 fi
 
+echo
 echo "Installing vimplug for Neovim..."
 echo "========================================"
 if [ -e $HOME/.local/share/nvim/site/autoload/plug.vim ]; then

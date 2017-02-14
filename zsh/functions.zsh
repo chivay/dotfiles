@@ -18,3 +18,8 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+# Create directory and enter it
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
