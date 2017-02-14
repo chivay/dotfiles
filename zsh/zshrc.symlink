@@ -1,9 +1,8 @@
 # zshrc by chivay
 
 source $HOME/.cargo/env
-source "${HOME}/.zgen/zgen.zsh"
+source $HOME/.zgen/zgen.zsh
 
-#eval $(dircolors ~/.dircolors)
 eval $(dircolors ~/.LS_COLORS)
 
 # if the init scipt doesn't exist
@@ -30,6 +29,7 @@ export TERM=xterm
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+export PATH=$HOME/bin:$PATH
 
 # Usage: extract <file>
 # Description: extracts archived files / mounts disk images
