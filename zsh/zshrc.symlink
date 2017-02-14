@@ -1,4 +1,4 @@
-# Created by zshrc by chivay
+# zshrc by chivay
 
 source $HOME/.cargo/env
 source "${HOME}/.zgen/zgen.zsh"
