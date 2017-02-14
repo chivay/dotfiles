@@ -1,0 +1,5 @@
+alias vim='nvim'
+alias k='k -h'
+alias ls='ls -h --color=auto'
+alias dup='nohup termite -d $(pwd) > /dev/null 2> /dev/null &!'
+alias dict='sdcv'

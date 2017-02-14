@@ -1,53 +1,25 @@
 # zshrc by chivay
 
-source $HOME/.cargo/env
-source $HOME/.zgen/zgen.zsh
-
-eval $(dircolors ~/.LS_COLORS)
+source $HOME/.cargo/env      # Setup cargo PATH 
+source $HOME/.zgen/zgen.zsh  # Load zgen
 
 # if the init scipt doesn't exist
 if ! zgen saved; then
-    # specify plugins here
     zgen oh-my-zsh
     
-    #zgen oh-my-zsh themes/agnoster
     zgen load unixorn/warhol.plugin.zsh
     zgen load tylerreckart/odin odin
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load rimraf/k
+
     zgen save
 fi
 
+eval $(dircolors ~/.LS_COLORS)
 
-alias vim='nvim'
-alias k='k -h'
-alias ls='ls -h --color=auto'
-alias dup='nohup termite -d $(pwd) > /dev/null 2> /dev/null &!'
-alias dict='sdcv'
 export EDITOR=nvim
-export TERM=xterm
-
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
 export PATH=$HOME/bin:$PATH
 
-# Usage: extract <file>
-# Description: extracts archived files / mounts disk images
-extract () {
-    if [ -f $1 ]; then
-        case $1 in
-            *.tar.bz2)  tar -jxvf $1        ;;
-            *.tar.gz)   tar -zxvf $1        ;;
-            *.bz2)      bunzip2 $1          ;;
-            *.gz)       gunzip $1           ;;
-            *.tar)      tar -xvf $1         ;;
-            *.tbz2)     tar -jxvf $1        ;;
-            *.tgz)      tar -zxvf $1        ;;
-            *.zip)      unzip $1            ;;
-            *.Z)        uncompress $1       ;;
-            *)          echo "'$1' cannot be extracted/mounted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
+source $HOME/.dotfiles/zsh/alias.zsh
+source $HOME/.dotfiles/zsh/functions.zsh
