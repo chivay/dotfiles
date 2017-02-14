@@ -1,0 +1,84 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=$HOME/.config/i3blocks/$BLOCK_NAME
+separator_block_width=20
+markup=none
+
+[music]
+command=~/.config/i3blocks/spotify.py
+label=
+color=#1ED760
+interval=3
+
+# Brightness indicator
+[brightness]
+label=
+command=xbacklight | awk '{print int( ($1 + 1.0)/10)*10}'
+interval=once
+signal=9
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+#[memory]
+#label=MEM
+#interval=10
+
+# Disk usage
+#
+# The directory defaults to $HOME if the instance is not specified.
+# The script may be called with a optional argument to set the alert
+# (defaults to 10 for 10%).
+[disk]
+label= 
+interval=30
+
+[betterwifi]
+label=
+instance=wlp2s0
+interval=3
+
+[bandwidth]
+command=~/.config/i3blocks/bandwidth
+interval=persist
+markup=pango
+
+
+[betterbattery]
+#label=
+interval=60
+
+[time]
+markup=pango
+command=date "+%d %b, %H:%M:%S"
+interval=1
