@@ -21,6 +21,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Autocomplete for Rust
 Plug 'sebastianmarkow/deoplete-rust'
 
+" Autocomplete for Python
+Plug 'zchee/deoplete-jedi'
+
 " Autocomplete for C-family
 Plug 'zchee/deoplete-clang'
 
@@ -52,6 +55,9 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 let g:deoplete#sources#rust#racer_binary='/home/chivay/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/chivay/repos/rust/src'
+
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
 
 autocmd CompleteDone * pclose!
 
